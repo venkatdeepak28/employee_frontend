@@ -13,5 +13,78 @@
 }
 .label-el{
   color:#dff2eb;
-  
+}
+
+.label-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15vw;
+}
+
+.para{
+  margin-right: 5%;
+}
+
+.checkbox-container{
+  width: 20vw;
+  display: flex;
+}
+
+.course-container{
+  display: flex;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+
+.image-el{
+  margin-left: 2%;
+}
+
+
+.upload-el{
+  margin-right: 10%;
+}
+
+
+.pop-container{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  width: 40vw;
+}
+
+.name-container{
+  margin-left: 5%;
+}
+
+.email-container{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.profile{
+  max-height: 50px;
+}
+
+.list-container{
+  display: flex;
+  justify-content: space-around;
+  width: 97vw;
+}
+
+.email-para{
+  overflow-wrap: break-word;
+  max-width: 98px;
+  font-size: 12px;
+}
+
+.custom-btn{
+  background-color: transparent;
+  border: 0;
+  color: white;
 }

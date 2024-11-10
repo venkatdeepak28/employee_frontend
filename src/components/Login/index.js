@@ -37,7 +37,7 @@ const Login = () => {
             "password": passWord
         }
 
-        const url = "http://localhost:5001/login"
+        const url = "https://wordle-production-6fcb.up.railway.app/login"
         const response = 
         await axios.post(url, obj)
         .catch(err => {

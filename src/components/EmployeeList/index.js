@@ -1,10 +1,33 @@
+import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
 import Cookies from 'js-cookie'
-import {MainContainer, ListContainer, ButtonEl, CreateMainContainer, InnerMainContainer, CreateButton, Para, InputEl, EmployeeContainer} from './styledComponents'
+import {MainContainer, ListContainer, ButtonEl, CreateMainContainer, InnerMainContainer, CreateButton, Para, EmployeeContainer} from './styledComponents'
 
 const EmployeeList = () => {
+    const [data, setData] = useState([])
     const username = Cookies.get("username")
     const navigate = useNavigate()
+
+    useEffect(() => {
+        fetch("https://wordle-production-6fcb.up.railway.app/employee-list")
+        .then((response) => response.json())
+        .then((json => {
+            const newArr = json.map(eachValue => ({
+                fId: eachValue.f_id,
+                fName: eachValue.f_name,
+                fMobile: eachValue.f_mobile,
+                fEmail: eachValue.f_email,
+                fDesignation: eachValue.f_designation,
+                fCourse: eachValue.f_course,
+                fGender: eachValue.f_gender,
+                fDate: eachValue.f_createDate,
+                fImage: eachValue.f_image,
+                fEmailVerified: eachValue.f_emailverified
+            }))
+            setData(newArr)
+        }))
+    })
 
     const logout = () => {
         Cookies.remove("jwt_token")
@@ -13,6 +36,10 @@ const EmployeeList = () => {
 
     const navToCreate = () => {
         navigate("/create-employee")
+    }
+
+    const deleteUser = async (id) => {
+        await axios.delete(`https://wordle-production-6fcb.up.railway.app/delete/${id}`)
     }
 
     return (
@@ -38,8 +65,8 @@ const EmployeeList = () => {
                     </CreateButton>
                 </>
                 <InnerMainContainer>
-                    <Para>Total: 0</Para>
-                    <InputEl type="text" value="" placeholder="Search Keyword" />
+                    <Para>Total: {data.length}</Para>
+                    
                 </InnerMainContainer>
             </CreateMainContainer>
             <EmployeeContainer>
@@ -74,6 +101,28 @@ const EmployeeList = () => {
                     Action
                 </li>
             </EmployeeContainer>
+            <EmployeeContainer>
+                {data.map(eachValue => (
+                    <li className="list-container" key={eachValue.fId}>
+                        <p>{eachValue.fId}</p>
+                        <img src={`http://localhost:5001/` + eachValue.fImage} alt="profile" className="profile" />
+                        <p>{eachValue.fName}</p>
+                        <p className="email-para">{eachValue.fEmail}</p>
+                        <p>{eachValue.fMobile}</p>
+                        <p>{eachValue.fDesignation}</p>
+                        <p>{eachValue.fGender}</p>
+                        <p>{eachValue.fCourse}</p>
+                        <p>{eachValue.fDate}</p>
+                        <div>
+                            <br />
+                            <button onClick={() => deleteUser(eachValue.fId)} className="custom-btn"> 
+                                Delete
+                            </button>
+                        </div>
+                    </li>
+                ))}
+            </EmployeeContainer>
+
             
         </MainContainer>
     )
