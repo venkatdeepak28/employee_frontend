@@ -105,7 +105,7 @@ const EmployeeList = () => {
                 {data.map(eachValue => (
                     <li className="list-container" key={eachValue.fId}>
                         <p>{eachValue.fId}</p>
-                        <img src={`http://localhost:5001/` + eachValue.fImage} alt="profile" className="profile" />
+                        <img src={`https://wordle-production-6fcb.up.railway.app/` + eachValue.fImage} alt="profile" className="profile" />
                         <p>{eachValue.fName}</p>
                         <p className="email-para">{eachValue.fEmail}</p>
                         <p>{eachValue.fMobile}</p>
