@@ -101,7 +101,7 @@ const EmployeeList = () => {
                     Action
                 </li>
             </EmployeeContainer>
-            <EmployeeContainer>
+            <ul className="main-container">
                 {data.map(eachValue => (
                     <li className="list-container" key={eachValue.fId}>
                         <p>{eachValue.fId}</p>
@@ -121,7 +121,7 @@ const EmployeeList = () => {
                         </div>
                     </li>
                 ))}
-            </EmployeeContainer>
+            </ul>
 
             
         </MainContainer>
