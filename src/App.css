@@ -75,6 +75,7 @@
   display: flex;
   justify-content: space-around;
   width: 97vw;
+  margin-bottom: 2%;
 }
 
 .email-para{
@@ -87,4 +88,11 @@
   background-color: transparent;
   border: 0;
   color: white;
+}
+
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  color: #dff2eb;
 }
